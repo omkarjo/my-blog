@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://omkarjo.github.io/my-blog/sitemap-index.xml
