@@ -1,12 +1,9 @@
 ---
 import { Rss } from "lucide-react"
-import { LanguageToggle } from "~/components/react/language-toggle"
 import { ThemeToggle } from "~/components/react/theme-toggle"
-import { en, zh } from "~/config"
-import { getLangFromUrl } from "~/i18n/utils"
+import { en } from "~/config"
 
-const lang = getLangFromUrl(Astro.url)
-const config = lang === "zh" ? zh : en
+const config = en
 ---
 
 <header class="flex h-24 w-full items-center justify-between">
@@ -18,7 +15,7 @@ const config = lang === "zh" ? zh : en
     {
       config.rss && (
         <a
-          href={"/" + lang + "/rss.xml"}
+          href="/rss.xml"
           target="_blank"
           aria-label="RSS"
           title="RSS"
@@ -41,7 +38,6 @@ const config = lang === "zh" ? zh : en
       ))
     }
 
-    <LanguageToggle client:load />
     <ThemeToggle client:load />
   </div>
 </header>

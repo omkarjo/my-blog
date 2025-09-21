@@ -1,12 +1,9 @@
 ---
-import { en, zh } from "~/config"
-import { getLangFromUrl, useTranslations } from "~/i18n/utils"
+import { en } from "~/config"
+import { useTranslations } from "~/i18n/utils"
 
-const lang = getLangFromUrl(Astro.url)
-const t = useTranslations(lang)
-
-const { home, archive, custom, links, about } =
-  lang === "zh" ? zh.navigation : en.navigation
+const t = useTranslations("en")
+const { home, archive, links, about } = en.navigation
 ---
 
 <div
@@ -15,7 +12,7 @@ const { home, archive, custom, links, about } =
   {
     home && (
       <a
-        href={`/${lang}`}
+        href="/"
         class="hover:underline hover:underline-offset-4"
         aria-label={t("nav.home")}
         title={t("nav.home")}
@@ -28,7 +25,7 @@ const { home, archive, custom, links, about } =
   {
     archive && (
       <a
-        href={`/${lang}/archive`}
+        href="/archive"
         class="hover:underline hover:underline-offset-4"
         aria-label={t("nav.archive")}
         title={t("nav.archive")}
@@ -39,23 +36,9 @@ const { home, archive, custom, links, about } =
     )
   }
   {
-    custom?.map((tab) => (
-      <a
-        href={tab.link}
-        class="hover:underline hover:underline-offset-4"
-        target="_blank"
-        aria-label={tab.label}
-        title={tab.label}
-        data-astro-prefetch="viewport"
-      >
-        <p>{tab.label}</p>
-      </a>
-    ))
-  }
-  {
     links && (
       <a
-        href={`/${lang}/links`}
+        href="/links"
         class="hover:underline hover:underline-offset-4"
         aria-label={t("nav.links")}
         title={t("nav.links")}
@@ -68,7 +51,7 @@ const { home, archive, custom, links, about } =
   {
     about && (
       <a
-        href={`/${lang}/about`}
+        href="/about"
         class="hover:underline hover:underline-offset-4"
         aria-label={t("nav.about")}
         title={t("nav.about")}

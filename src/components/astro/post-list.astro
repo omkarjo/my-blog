@@ -1,17 +1,17 @@
 ---
 interface Props {
   post: any
-  lang: string
+  lang?: string
   dateFormat?: string
   dateWidth?: string
 }
 
-const { post, lang, dateFormat = "default", dateWidth = "w-36" } = Astro.props
+const { post, dateFormat = "default", dateWidth = "w-36" } = Astro.props
 import { formatDate } from "~/utils"
 ---
 
 <a
-  href={`/${lang}/posts/${post.id}/`}
+  href={`/posts/${post.id}/`}
   class="my-3 flex visited:text-purple-500/90 md:my-2"
 >
   <p
