@@ -25,19 +25,20 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
           
-      - name: Convert pnpm-lock to package-lock
-        run: |
-          npm install -g npm@latest
-          rm -f package-lock.json
-          npm install
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8
+          
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
         
       - name: Build with Astro
         run: |
-          npm run astro check
-          npm run astro build
-          npm run pagefind -- --site dist
+          pnpm astro check
+          pnpm astro build
+          pnpm pagefind --site dist
         
       - name: Setup Pages
         uses: actions/configure-pages@v4
